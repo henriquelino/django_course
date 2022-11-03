@@ -1,0 +1,5 @@
+
+em urls.py:
+admin.site.site_header = '[header] Meu projeto'
+admin.site.site_title = '[title] Titulo do site'  # shows on tab name
+admin.site.index_title = '[index] Gerenciamento de posts'

@@ -1,0 +1,24 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CRUD</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="">
+        
+        {% bootstrap_css %} {# Load CSS #}
+    </head>
+    <body>
+        <div class="container">
+            <!-- oi -->
+            {% bootstrap_messages %} {# Display django.contrib.messages as Bootstrap alerts #}
+            {% block content %} {% endblock %}
+        </div>
+            
+        {% bootstrap_javascript %} {# Load JavaScript #}
+        
+    </body>
+</html>

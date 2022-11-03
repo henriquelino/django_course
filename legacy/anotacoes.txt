@@ -1,0 +1,4 @@
+Gera models após inspecionar tabelas já existentes:
+`python manage.py inspectdb`
+
+`python manage.py inspectdb > app/models.py` redireciona o output para o arquivo

@@ -1,0 +1,49 @@
+{% load django_bootstrap5 %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Django Paginacao</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+    <body>
+        {% bootstrap_messages %}
+        <div class="container">
+            <h1>Produtos</h1>
+        </div>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for produto in page_obj %}
+                        <tr>
+                            <th scope="row">{{ produto.id }}</th>
+                            <th scope="row">{{ produto.name }}</th>
+                            <th scope="row">{{ produto.price }}</th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            {% include 'pagination.html' %}
+
+        </div>
+    </body>
+</html>

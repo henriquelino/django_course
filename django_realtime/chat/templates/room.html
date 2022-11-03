@@ -1,0 +1,66 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sala de papinho</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div class="container">
+            <textarea id="room" cols="80" rows="20"></textarea><br>
+            <input id="text" type="text" size="100"><br>
+            {% buttons %}
+            <input id="send_button" type="button" value="Send">
+            {% endbuttons %}
+        </div>
+        
+        
+        {{ room_name|json_script:"room-name" }}
+        <script>
+            // var room_name = {{ json_room_name }};
+            const room_name = JSON.parse(document.getElementById('room-name').textContent);
+            console.log('room_name = '+ room_name)
+            const socket_str = 'ws://' + window.location.host + '/ws/chat/' + room_name + '/'
+            console.log('socket_str = '+ socket_str)
+            var chatSocket = new WebSocket(socket_str);
+            
+            chatSocket.onmessage = function(e){
+                // when receive a new message, append it to the room chat text
+                var data = JSON.parse(e.data);
+                var message = data['message'];
+                document.querySelector('#room').value += (message + '\n');
+            }
+            
+            chatSocket.onclose = function(e){
+                console.error('Chat was closed');
+            }
+            
+            document.querySelector('#text').focus();
+            document.querySelector('#text').onkeyup = function(e){
+                // when user pess enter, send a click to the send button
+                if (e.keyCode === 13){
+                    document.querySelector('#send_button').click()
+                }
+            }
+            
+            document.querySelector('#botao').onclick= function(e){
+                var message_input = document.querySelector('#text');
+                var message = message_input.value;
+                
+                // send message to websocket
+                chatSocket.send(JSON.stringify({
+                    'message': message
+                }));
+                 
+                message_input.value = ''; // clear text field
+            }
+            
+        </script>
+        {% bootstrap_javascript jquery='full' %}
+    </body>
+</html>

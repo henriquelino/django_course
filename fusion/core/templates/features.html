@@ -1,0 +1,57 @@
+{% load static %}
+{% load django_template_maths %}
+
+<!-- Features Section Start -->
+<section id="features" class="section-padding">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Awesome Features</h2>
+            <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+        </div>
+        <div class="row">
+            {% for feature in features %}
+            
+            {% if forloop.counter0 == features|length|div:2 %}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="show-box wow fadeInUp" data-wow-delay="0.3s">
+                    <img src="{% static 'img/feature/intro-mobile.png' %}" alt="">
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if forloop.first  %}
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="content-left">
+            {%  elif forloop.counter0 == features|length|div:2 %}
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="content-right">
+            {% endif %}
+                
+            {% firstof forloop.counter|mul:3 as wowdelay %}
+                {% if forloop.counter <= features|length|div:2 %}
+                    <div class="box-item wow fadeInLeft" data-wow-delay="0.{{ wowdelay }}s">
+                {% else %}
+                {% firstof features|length|mul:3|div:2 as overflow_time %}
+                    <div class="box-item wow fadeInRight" data-wow-delay="0.{{ wowdelay|sub:overflow_time }}s">
+                {% endif %}
+                
+                        <span class="icon">
+                            <i class="{{ feature.icon }}"></i>
+                        </span>
+                        <div class="text">
+                            <h4>{{ feature.name }}</h4>
+                            <p>{{ feature.description }}</p>
+                        </div>
+                    </div>
+            
+            
+            {% endfor %}
+            
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Features Section End -->

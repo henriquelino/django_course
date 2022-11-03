@@ -1,0 +1,41 @@
+{% load static %}
+{% load django_bootstrap5 %} {# Load the tag library #}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shirk-to-fit=no">
+        <title>Charts</title>
+        {% bootstrap_css %} {# Load CSS and JavaScript #}
+        
+    </head>
+    <body>
+        {% bootstrap_messages %} {# Display django.contrib.messages as Bootstrap alerts #}
+        <div class="container">
+            <h1 class="text-primary">Charts</h1>
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <canvas id="grafico" width="500" height="400"></canvas>
+        </div>
+        
+    </body>
+    
+    {% bootstrap_javascript %}
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script> {# load jquery #}
+    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script> {# load charsjs #}
+    
+  
+    <script type="text/javascript">
+        $.get('{% url "data" %}', function(data){
+          var ctx = $("#grafico").get(0).getContext("2d");
+          new Chart(ctx, {
+              type: 'line', data: data
+          });
+        });
+    </script>
+</html>

@@ -1,0 +1,2 @@
+Para atualizar arquivo po (arquivo de traduções) usar python manage.py makemessages -l <lingua> (es para espanhol, por exemplo)
+Após atualizar arquivo po na pasta locale, usar python manage.py compilemessages

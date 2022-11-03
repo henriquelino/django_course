@@ -1,0 +1,31 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CRUD</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="">
+        
+        {% bootstrap_css %} {# Load CSS #}
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+    </head>
+    <body>
+        <div class="container">
+            <!-- oi -->
+            {% bootstrap_messages %} {# Display django.contrib.messages as Bootstrap alerts #}
+            {% block content %} {% endblock %}
+        </div>
+            
+        
+        <script type="text/javascript" charset="utf8" src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+        <script src="{% static 'js/datatables.js' %}" async defer></script>
+        {% bootstrap_javascript %} {# Load JavaScript #}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        
+    </body>
+</html>

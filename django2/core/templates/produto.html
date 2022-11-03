@@ -1,0 +1,35 @@
+<!-- carrega o bootstrap-->
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Produto</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <!-- carrega os arquivos CSS do bootstrap-->
+    {% bootstrap_css %}
+</head>
+
+<body>
+    <div class="container">
+        <h1>Produto</h1>
+        <!-- mensagens/retornos do bootstrap-->
+        {% bootstrap_messages %}
+        <form action="{% url 'produto' %}" method="post" class="form" autocomplete="on" , enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">Adicionar produto</button>
+            {% endbuttons %}
+        </form>
+
+        <script src="" async defer></script>
+        <!-- carrega os arquivos JS do bootstrap-->
+        {% bootstrap_javascript jquery='full' %}
+</body>
+
+</html>

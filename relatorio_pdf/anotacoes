@@ -1,0 +1,8 @@
+Para gerar PDFs temos 2 principais opções:
+
+reportlab -> muito usada e recomendada pelo django, + dificil gerar
+`pip install reportlab`
+
+weasyprint -> usa html e css para gerar o relatorio, precisa de configuração para o windows
+> https://doc.courtbouillon.org/weasyprint/latest/first_steps.html#windows
+`pip install WeasyPrint`
